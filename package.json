@@ -1,4 +1,8 @@
 {
+  "private": true,
+  "scripts": {
+    "generate": "rm -rf static; gssg --domain 'https://blog.squirrelcave.com' --url https://preview.squirrelcave.com"
+  },
 	"dependencies": {
 		"ghost-static-site-generator": "^1.1.4"
 	}
