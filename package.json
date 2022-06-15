@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"ghost-static-site-generator": "^1.1.4"
+	}
+}
