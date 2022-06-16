@@ -35,7 +35,7 @@ Currently manually configured. Can we get this configuration into code?
   - no build command
   - output under `/static`
   - everything else default
-- custom domain: currently preview.squirrelcave.com (to be changed to blog.squirrelcave.com)
+- custom domain: squirrelcave.com
 
 # TODO
 
