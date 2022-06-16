@@ -58,6 +58,14 @@ Currently manually configured. Can we get this configuration into code?
 - TODO: make the application a github app, so I can restrict it to just the squirrelcave.com-static-site repo.
   - is there a lighter-weight way to do this...?
 
+## tailscale
+
+Since the ghost instance is self-hosted and only accessible through tailscale, the github action needs to be on the tailnet.
+
+Conveniently, the tailscale team have built a [Connect Tailscale](https://github.com/marketplace/actions/connect-tailscale) action. This does require a [reusable authkey](https://tailscale.com/kb/1085/auth-keys/), but github actions' secrets store seems reasonably trustworthy.
+
+The auth key is a little inconvenient, as it needs to be manually refreshed every 90 days.
+
 # TODO
 
 - [ ] replace pipedream with a self-hosted application that connects ghost webhooks to github
