@@ -1,0 +1,36 @@
+name: Publish Static Site
+
+on:
+  workflow_dispatch:    # Allows you to run this workflow manually from the Actions tab
+
+  repository_dispatch:  # Allows external webhook trigger
+    types:
+      - site-changed
+
+jobs:
+  publish-static-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect tailscale
+        uses: tailscale/github-action@v1
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 6.0.2
+
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install node dependencies
+        run: pnpm install
+      - name: generate static site
+        run: pnpm run generate
+      - name: publish static site (commit and push)
+        uses: stefanzweifel/git-auto-commit-action@v4.14.1
+        with:
+          commit_message: Auto-publish on site change
