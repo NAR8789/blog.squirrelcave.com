@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Squirrel Cave</title>
+    <title>Test Post</title>
     <link rel="stylesheet" href="/assets/built/screen.css?v=838c80ecb7">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,29 +14,32 @@
         var siteUrl = 'https://squirrelcave.com';
     </script>
 
-    <meta name="description" content="Thoughts, stories and ideas." />
     <link rel="icon" href="https://squirrelcave.com/content/images/2022/05/squirrel-cave.ico" type="image/x-icon" />
-    <link rel="canonical" href="https://squirrelcave.com/" />
+    <link rel="canonical" href="https://squirrelcave.com/test-post/" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     
     <meta property="og:site_name" content="Squirrel Cave" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Squirrel Cave" />
-    <meta property="og:description" content="Thoughts, stories and ideas." />
-    <meta property="og:url" content="https://squirrelcave.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Test Post" />
+    <meta property="og:description" content="Test webhook integration" />
+    <meta property="og:url" content="https://squirrelcave.com/test-post/" />
     <meta property="og:image" content="https://squirrelcave.com/content/images/2022/05/pexels-felix-mittermeier-957024.jpg" />
+    <meta property="article:published_time" content="2022-06-16T21:11:04.000Z" />
+    <meta property="article:modified_time" content="2022-06-16T21:11:04.000Z" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Squirrel Cave" />
-    <meta name="twitter:description" content="Thoughts, stories and ideas." />
-    <meta name="twitter:url" content="https://squirrelcave.com/" />
+    <meta name="twitter:title" content="Test Post" />
+    <meta name="twitter:description" content="Test webhook integration" />
+    <meta name="twitter:url" content="https://squirrelcave.com/test-post/" />
     <meta name="twitter:image" content="https://squirrelcave.com/content/images/2022/05/pexels-felix-mittermeier-957024.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Xiao F" />
     <meta property="og:image:width" content="2000" />
     <meta property="og:image:height" content="1333" />
     
     <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "WebSite",
+    "@type": "Article",
     "publisher": {
         "@type": "Organization",
         "name": "Squirrel Cave",
@@ -46,18 +49,27 @@
             "url": "https://squirrelcave.com/content/images/2022/05/squirrel-cave.jpeg"
         }
     },
-    "url": "https://squirrelcave.com/",
-    "image": {
-        "@type": "ImageObject",
-        "url": "https://squirrelcave.com/content/images/2022/05/pexels-felix-mittermeier-957024.jpg",
-        "width": 2000,
-        "height": 1333
+    "author": {
+        "@type": "Person",
+        "name": "Xiao F",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/aebeac58d280a1d373b52f16c710e871?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "https://squirrelcave.com/author/xiao/",
+        "sameAs": []
     },
+    "headline": "Test Post",
+    "url": "https://squirrelcave.com/test-post/",
+    "datePublished": "2022-06-16T21:11:04.000Z",
+    "dateModified": "2022-06-16T21:11:04.000Z",
+    "description": "Test webhook integration",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://squirrelcave.com/"
-    },
-    "description": "Thoughts, stories and ideas."
+    }
 }
     </script>
 
@@ -68,7 +80,7 @@
     <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=838c80ecb7">
 </head>
 
-<body class="home-template">
+<body class="post-template">
     <svg width="0" height="0" style="display: none;">
     <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="arrow-left">
         <path d="M26.667 14.667v2.667h-16L18 24.667l-1.893 1.893L5.547 16l10.56-10.56L18 7.333l-7.333 7.333h16z"></path>
@@ -174,55 +186,62 @@
     </div>
 </header>
 
-            <div class="cover container">
-    <div class="cover-content">
-            <div class="cover-icon">
-                <img class="cover-icon-image" src="https://squirrelcave.com/content/images/2022/05/squirrel-cave.ico" alt="Squirrel Cave">
+        <header class="sticky">
+            <div class="sticky-title">Test Post</div>
+            <button class="button-icon sticky-toc-button" aria-label="Table of Contents">
+                <svg class="icon">
+                    <use xlink:href="#table-of-contents"></use>
+                </svg>
+                <div class="sticky-toc"></div>
+            </button>
+            <div class="sticky-track">
+                <div class="sticky-progress"></div>
             </div>
-
-            <div class="cover-description">Thoughts, stories and ideas.</div>
-
-    </div>
-</div>
-                        <div class="site-content">
+        </header>
+        <div class="site-content">
             
 <div class="content-area">
     <main class="site-main">
-        <div class="post-feed container medium">
-                <article class="feed post no-image">
-    <div class="feed-calendar">
-        <div class="feed-calendar-month">
-            Jun
-        </div>
-        <div class="feed-calendar-day">
-            16
-        </div>
+            <article class="single post no-image">
+    <header class="single-header kg-canvas">
+            <div class="single-meta">
+                <span class="single-meta-item single-meta-date">
+                    <time datetime="2022-06-16">
+                        Jun 16, 2022
+                    </time>
+                </span>
+                <span class="single-meta-item single-meta-length">
+                    1 min read
+                </span>
+            </div>
+        <h1 class="single-title">Test Post</h1>
+    </header>
+    <div class="single-content gh-content kg-canvas">
+        <p>Test webhook integration</p>
     </div>
-    <h2 class="feed-title">Test Post</h2>
-    <div class="feed-right">
-        <svg class="icon feed-visibility feed-visibility-public">
-            <use xlink:href="#star"></use>
-        </svg>
-        <div class="feed-length">
-            1 min read
-        </div>
-    </div>
-    <svg class="icon feed-icon">
-        <use xlink:href="#chevron-right"></use>
-    </svg>
-    <a class="u-permalink" href="/test-post/" aria-label="Test Post"></a>
-</article>        </div>
-        <nav class="pagination">
-</nav>
-<div class="infinite-scroll-status">
-    <div class="infinite-scroll-request"></div>
-</div>
-<div class="infinite-scroll-action">
-    <button class="button button-secondary infinite-scroll-button">Load more</button>
-</div>
-
-
-    </main>
+        <footer class="single-footer container medium">
+            <div class="single-footer-left">
+            </div>
+            <div class="single-footer-middle">
+                    <div class="single-footer-top">
+                        <h3 class="single-footer-title">Published by:</h3>
+                        <div class="author-list">
+                                <div class="author-image-placeholder u-placeholder square">
+                                    <a href="/author/xiao/" title="Xiao F">
+                                        <img class="author-image lazyload u-object-fit"
+                                            data-srcset="//www.gravatar.com/avatar/aebeac58d280a1d373b52f16c710e871?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x"
+                                            src="//www.gravatar.com/avatar/aebeac58d280a1d373b52f16c710e871?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x"
+                                            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                            alt="Xiao F">
+                                    </a>
+                                </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="single-footer-right">
+            </div>
+        </footer>
+</article>                                </main>
 </div>
         </div>
         <footer class="site-footer container">
