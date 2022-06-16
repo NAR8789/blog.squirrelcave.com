@@ -1,5 +1,5 @@
 User-agent: *
-Sitemap: https://preview.squirrelcave.com/sitemap.xml
+Sitemap: https://squirrelcave.com/sitemap.xml
 Disallow: /ghost/
 Disallow: /p/
 Disallow: /email/
