@@ -15,25 +15,37 @@ Private ghost instance-on-docker-on-tailscale is documented in code and version-
 
 Static site generation is [documented in code](https://github.com/NAR8789/squirrelcave.com-static-site/blob/main/package.json#L4) and version controlled in this repo.
 
-Github action is [documented in code](https://github.com/NAR8789/squirrelcave.com-static-site/blob/main/.github/workflows/publish-static-site.yml) and version controlled in this repo. However, to trigger this action I need to transform ghost's webhook into a [repository dispatch](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event), and I do that via pipedream, which is currently manually configured.
+Github action is [documented in code](https://github.com/NAR8789/squirrelcave.com-static-site/blob/main/.github/workflows/publish-static-site.yml) and version controlled in this repo. However, to trigger this action I need to transform ghost's webhook into a [repository dispatch](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event), and I do that via nginx.
 
 Automatic via cloudfare pages is currently manually configured.
 
-## Event transformation via pipedream
+## Event transformation via nginx
 
-1. ghost webhooks to pipedream
-2. pipedream filters and authenticates events (authentication is just a string match on key, so this is probably vulnerable to timing attacks??)
-3. pipedream triggers a repositority dispatch event to start the publish flow in github actions.
+Ghost can webhook out on `site-updated` to a static url.
+This will be a GET request.
 
-Pipedream's security and namespacing are pretty janky unfortunately
-- secrets live in a global ENVIRONMENT
-- no built-in authentication helpers or time-invariant filter action. I could self-implement, but then how much complexity is pipedream really saving me?
+Triggering github actions requires POSTing to the repository dispatch endpoint.
 
-Pipedream so far only really saves me the complexity of self-hosting a node app.
-- no built-in ghost integration, so my filtering is custom-rolled
-- because pipedream is "no-code", custom-rolling means form-based-programming-and-custom-tooling
-- no built-in trigger github action step, so I need to self-roll that
-- pipedream's built-in github integration requires full admin access to github, which... no.
+To join the two, we use nginx as a request transformer.
+
+```nginx
+location /to-github/site-changed {
+  set $ghtoken $arg_ghtoken;
+  set $args '';
+
+  # github repository dispatch documentation: https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event
+  proxy_pass https://api.github.com/repos/NAR8789/squirrelcave.com/dispatches;
+  proxy_method POST;
+
+  proxy_set_header Accept 'application/vnd.github+json';
+  proxy_set_header Authorization 'Bearer $ghtoken';
+  proxy_set_header X-Github-Api-Version '2022-11-28';
+  proxy_set_body '{"event_type":"site-changed"}';
+}
+```
+
+1. Now ghost can webhooks to nginx, passing along authentication token in a `ghtoken` parameter.
+2. nginx transforms this into POST with bearer authentication and the correct body
 
 ## Cloudflare pages
 
@@ -49,14 +61,12 @@ Currently manually configured. Can we get this configuration into code?
 
 # security notes
 
-## pipedream
+## ghost webhook to nginx to github
 
-- ghost webhooks just support a static url, so I secure the pipedream endpoint with a static key embedded in the url
-- pipedream also needs a github access token to trigger the repository dispatch
-- TODO: replace pipedream with a self-hosted application that connects ghost webhooks to github, for one less
-  compromisable third-party service.
-- TODO: make the application a github app, so I can restrict it to just the squirrelcave.com-static-site repo.
-  - is there a lighter-weight way to do this...?
+ghost webhooks just support a static url, so I include my github access token as a query parameter.
+Not sure how well ghost secures the storage for this.
+
+This token needs to be refreshed every 90 days.
 
 ## tailscale
 
@@ -68,6 +78,4 @@ The auth key is a little inconvenient, as it needs to be manually refreshed ever
 
 # TODO
 
-- [ ] replace pipedream with a self-hosted application that connects ghost webhooks to github
-  - [ ] make this a github app so I can restrict it to just the squirrelcave.com-static-site repo.
-- [ ] move cloudflare pages configuration and github actions configuration to code
+- [ ] move cloudflare pages configuration to code
