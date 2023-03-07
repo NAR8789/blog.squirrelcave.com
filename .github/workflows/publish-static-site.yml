@@ -15,23 +15,23 @@ jobs:
         uses: tailscale/github-action@v1
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - name: Setup node.js environment
+        uses: actions/setup-node@v3.6.0
         with:
           node-version: 14
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.4
         with:
-          version: 6.0.2
+          version: 7
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.3.0
       - name: Install node dependencies
         run: pnpm install
       - name: generate static site
         run: pnpm run generate
       - name: publish static site (commit and push)
-        uses: stefanzweifel/git-auto-commit-action@v4.14.1
+        uses: stefanzweifel/git-auto-commit-action@v4.16.0
         with:
           commit_message: Auto-publish on site change
           commit_author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
